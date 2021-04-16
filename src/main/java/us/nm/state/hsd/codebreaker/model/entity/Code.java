@@ -138,6 +138,17 @@ public class Code {
             : null;
   }
   
+  public boolean isSolved() {
+    return guesses
+        .stream()
+        .anyMatch(Guess::isSolution);
+  }
+  
+  @JsonProperty("text")
+  public String getSolution() {
+    return isSolved() ? text : null;
+  }
+  
   @PostLoad
   @PostPersist
   private void updateKey() {
